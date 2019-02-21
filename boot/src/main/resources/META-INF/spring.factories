@@ -1,0 +1,8 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.duqio.boot.datasource.druid.autoconfigure.DataSourceAutoConfigure
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.duqio.boot.mvc.springmvc.autoconfigure.WebMvcAutoConfigure
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.duqio.boot.cache.jcache.autoconfigure.JcacheAutoConfigure

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+	xmlns:jsr107='http://www.ehcache.org/v3/jsr107' xmlns='http://www.ehcache.org/v3'
+	xsi:schemaLocation="
+        http://www.ehcache.org/v3 http://www.ehcache.org/schema/ehcache-core-3.5.xsd
+        http://www.ehcache.org/v3/jsr107 http://www.ehcache.org/schema/ehcache-107ext.xsd">
+	<!-- <service> <jsr107:defaults> <jsr107:cache name="city" template="heap-cache"/> 
+		</jsr107:defaults> </service> -->
+		
+	<!--配置硬盘持久化目录-->
+	<persistence directory="E:/test"/>
+	
+	<!-- 定义缓存模板 -->
+	<cache-template name="heap-cache">
+		<!-- 配置缓存到期配置 -->
+		<!-- <expiry>
+			<tti unit="minutes">2</tti> 即固定空闲期策略，通过该节点的 unit 指定时间单位，节点值指定时间数值
+			ttl：TTL（time to live）策略，即固定存活期策略
+			none：不采用任何过期策略
+		</expiry> -->
+		<resources>
+			<!-- 配置堆储存 -->
+			<heap unit="entries">2000</heap>
+			<!-- 配置堆外储存 -->
+			<offheap unit="MB">100</offheap>
+			<!--配置磁盘持久化储存-->
+			<disk unit="MB" persistent="true">500</disk>
+		</resources>
+	</cache-template>
+
+	<cache alias="user" uses-template="heap-cache">
+		<expiry>
+<!-- 			<ttl unit="seconds">40</ttl> -->
+			<none/>
+		</expiry>
+	</cache>
+	<!-- <cache alias="city" uses-template="heap-cache">
+		<expiry>
+			<ttl unit="seconds">40</ttl>
+		</expiry>
+	</cache> -->
+
+</config>

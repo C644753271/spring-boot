@@ -1,0 +1,47 @@
+spring:
+  datasource: # 配置数据库连接的基本信息
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://duoqiyuan.mysql.rds.aliyuncs.com:3306/db_201706_hundredyear_zhang?zeroDateTimeBehavior=convertToNull&autoReconnect=true
+    username: dqo_hundredyear
+    password: Dqo_hundredyear
+    type: com.zaxxer.hikari.HikariDataSource
+    #type: com.alibaba.druid.pool.DruidDataSource
+  jpa: # 配置jpa的基本信息
+    database: mysql
+    show-sql: true
+  quartz: #定义quartz定时任务的相关信息
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            dataSource: dataSource
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    #数据库方式
+    job-store-type: jdbc
+    #初始化表结构
+    #jdbc:
+      #initialize-schema: never
+  cache: #配置缓存
+    jcache:
+      config: classpath:jcache.xml
+server: #配置Tomcat容器
+  port: 9091
+  tomcat:
+    max-connections: 10000 #设置最大连接数，默认是10000
+    max-threads: 1000 #设置最大并发数，默认是200
+#logging:
+  #level:
+    #root: DEBUG
