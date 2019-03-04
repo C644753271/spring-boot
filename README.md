@@ -1,5 +1,5 @@
 # spring-boot
-spring boot + jcache + swagger2 + druid 
+spring boot + jcache + swagger2 + druid + shiro + spring session + webscoket(基于netty)
 
 项目功能描述
 
