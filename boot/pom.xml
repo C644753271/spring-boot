@@ -40,6 +40,37 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-cache</artifactId>
 		</dependency>
+		<!-- 引入Redis -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		<dependency>
+		    <groupId>org.apache.commons</groupId>
+		    <artifactId>commons-pool2</artifactId>
+		</dependency>
+		<!-- 引入spring session -->
+		<dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-data-redis</artifactId>
+        </dependency>
+        <!-- netty websocket -->
+        <dependency>
+			<groupId>org.yeauty</groupId>
+			<artifactId>netty-websocket-spring-boot-starter</artifactId>
+			<version>0.7.4</version>
+		</dependency>
+		<!-- 引入Apache shiro -->
+		<dependency>
+            <groupId>org.apache.shiro</groupId>
+            <artifactId>shiro-spring</artifactId>
+            <version>1.4.0</version>
+        </dependency>
+		<!-- spring websocket -->
+		<!-- <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency> -->
 		<!-- 引入阿里巴巴数据库连接池 -->
 		<dependency>  
 	       <groupId>com.alibaba</groupId>  
