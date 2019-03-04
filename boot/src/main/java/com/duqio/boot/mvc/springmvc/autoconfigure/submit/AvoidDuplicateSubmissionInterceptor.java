@@ -92,14 +92,16 @@ public class AvoidDuplicateSubmissionInterceptor extends HandlerInterceptorAdapt
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		//获取到方法上的注解
-		Token annotation = getAnnotation(handler, Token.class);
-		if (! Objects.isNull(annotation)) {
-			if(! Objects.isNull(modelAndView) && annotation.createToken()){
-				log.info("token to client");
-				Object token = request.getSession().getAttribute("token");
-				if(token != null)
-					modelAndView.addObject("token", token.toString());
+		if(! (handler instanceof ResourceHttpRequestHandler)){
+			//获取到方法上的注解
+			Token annotation = getAnnotation(handler, Token.class);
+			if (! Objects.isNull(annotation)) {
+				if(! Objects.isNull(modelAndView) && annotation.createToken()){
+					log.info("token to client");
+					Object token = request.getSession().getAttribute("token");
+					if(token != null)
+						modelAndView.addObject("token", token.toString());
+				}
 			}
 		}
 	}

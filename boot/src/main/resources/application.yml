@@ -9,6 +9,12 @@ spring:
   jpa: # 配置jpa的基本信息
     database: mysql
     show-sql: true
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+        format_sql: true
   quartz: #定义quartz定时任务的相关信息
     properties:
       org:
@@ -37,6 +43,19 @@ spring:
   cache: #配置缓存
     jcache:
       config: classpath:jcache.xml
+  redis: #redis相关配置
+    host: 121.41.11.151
+    password: 
+    port: 6379
+    lettuce:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+    timeout:
+      100000
+  session:
+    store-type: redis #使用redis来存储session
 server: #配置Tomcat容器
   port: 9091
   tomcat:

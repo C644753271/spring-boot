@@ -6,3 +6,9 @@ com.duqio.boot.mvc.springmvc.autoconfigure.WebMvcAutoConfigure
 
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.duqio.boot.cache.jcache.autoconfigure.JcacheAutoConfigure
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.duqio.boot.cache.redis.autoconfigure.RedisAutoConfigure
+
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.duqio.boot.session.autoconfigure.RedisSessionConfig
