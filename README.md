@@ -17,6 +17,12 @@ spring boot + jcache + swagger2 + druid
 
 引入Quartz，使用简单的注解来处理定时任务。
 
+加入基于netty的webScoket。
+
+加入Spring session处理session在负载均衡上的一致性。
+
+加入Apache shiro实现权限验证
+
 如何使用
 
 导入maven项目，maven -> install
