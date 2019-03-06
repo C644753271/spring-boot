@@ -58,9 +58,17 @@ spring:
     store-type: redis #使用redis来存储session
 server: #配置Tomcat容器
   port: 9091
+  #servlet:
+    #context-path: /monitoring
   tomcat:
     max-connections: 10000 #设置最大连接数，默认是10000
     max-threads: 1000 #设置最大并发数，默认是200
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+          "*"
 #logging:
   #level:
     #root: DEBUG
