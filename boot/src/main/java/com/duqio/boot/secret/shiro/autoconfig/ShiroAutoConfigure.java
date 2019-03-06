@@ -45,6 +45,7 @@ public class ShiroAutoConfigure {
         shiroFilterFactoryBean.setSuccessUrl("/home/index");
         
         filterChainDefinitionMap.put("/*", "anon");
+        filterChainDefinitionMap.put("/actuator/**", "anon");
         filterChainDefinitionMap.put("/authc/index", "authc");
         filterChainDefinitionMap.put("/authc/admin", "roles[admin]");
         filterChainDefinitionMap.put("/authc/renewable", "perms[Create,Update]");

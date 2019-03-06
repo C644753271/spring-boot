@@ -11,17 +11,15 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.beans.factory.annotation.Autowired;
 
+import com.duqio.boot.secret.shiro.util.SpringContextUtil;
 import com.duqio.boot.test.entity.ShiroUser;
 import com.duqio.boot.test.service.ShiroService;
 
 
 public class SecurityShiroRealm extends AuthorizingRealm {
-	
-	@Autowired
-	private ShiroService shiroService;
-	
+
+
 	/**
 	 * 提供用户信息返回权限信息
 	 */
@@ -29,6 +27,7 @@ public class SecurityShiroRealm extends AuthorizingRealm {
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
 		SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
 		String userName = (String) principals.getPrimaryPrincipal();
+		ShiroService shiroService = (ShiroService) SpringContextUtil.getBean("shiroService");
 		ShiroUser shiroUser = shiroService.findShiroUserByUserName(userName);
 		shiroUser.getRoles().forEach(role -> {
 			authorizationInfo.addRole(role.getRole());
@@ -46,6 +45,7 @@ public class SecurityShiroRealm extends AuthorizingRealm {
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String userName = (String) token.getPrincipal();
+		ShiroService shiroService = (ShiroService) SpringContextUtil.getBean("shiroService");
 		ShiroUser shiroUser = shiroService.findShiroUserByUserName(userName);
 
         if (Objects.isNull(shiroUser)) {
